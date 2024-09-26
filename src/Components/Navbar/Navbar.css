@@ -1,0 +1,46 @@
+/* Navbar.css */
+.navbar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #6CD9CE;
+    transition: left 0.3s ease;
+    padding-top: 60px;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .navbar ul li {
+    padding: 8px 16px;
+  }
+  
+  .navbar ul li a {
+    color: white;
+    text-decoration: none;
+  } 
+  
+  .navbar.open {
+    left: 0;
+  }
+  
+  .menu-btn {
+    font-size: 100px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    /* color: rgb(178, 20, 20); */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 50px;
+  }
+
+  .button-menu{
+    
+  }
+  
