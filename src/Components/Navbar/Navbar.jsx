@@ -19,10 +19,10 @@ export const Navbar = () => {
     <nav className={`navbar ${isOpen ? "open" : ""}`}>
     <img src={menu_icon} className="menu-btn" onClick={toggleNavbar}/>
       <ul>
-        <li><a href="#login">Login</a></li>
-        <li><a href="#services">Data User</a></li>
-        <li><a href="#about">Data Ruangan</a></li>
-        <li><a href="#contact">Data Cuti</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/users">Data User</a></li>
+        <li><a href="/ruangan">Data Ruangan</a></li>
+        <li><a href="/cuti">Data Cuti</a></li>
       </ul>
     </nav>
   </div>

@@ -33,11 +33,10 @@
     cursor: pointer;
     background: none;
     border: none;
-    /* color: rgb(178, 20, 20); */
     position: fixed;
     top: 15px;
     left: 15px;
-    width: 50px;
+    width: 30px;
   }
 
   .button-menu{

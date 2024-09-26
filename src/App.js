@@ -4,6 +4,8 @@ import './App.css';
 import { Login } from './Components/Login/Login';
 import { User } from './Components/User/User';
 import { Navbar } from './Components/Navbar/Navbar';
+import { Ruangan } from './Components/Ruangan/Ruangan';
+import { Cuti } from './Components/Cuti/Cuti';
 
 function App() {
   return (
@@ -12,9 +14,12 @@ function App() {
       <Navbar />
       <div className="main-content">
         <Routes>
-          {/* <Route path="/" element={<Dashboard />} /> */}
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/users" element={<User />} />
-          <Route path="/settings" element={<Login />} />
+          <Route path="/ruangan" element={<Ruangan />} />
+          <Route path="/cuti" element={<Cuti />} />
+          
         </Routes>
       </div>
     </div>
