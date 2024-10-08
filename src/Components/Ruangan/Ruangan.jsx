@@ -7,7 +7,7 @@ import plus from '../Assets/plus.png'
 export const Ruangan = () => {
     const [visible, setvisible]= useState(false)
     return (
-        <div className='container'>
+        <div className='container-fluid'>
             <h1>DATA RUANGAN</h1>
             {/* <button  className='add' onClick={()=>setvisible(true)}> <img src={plus} alt="" className='add-btn' /></button> */}
             <img src={plus} alt="" className='add-btn' onClick={()=>setvisible(true)}/>

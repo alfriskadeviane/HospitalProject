@@ -1,4 +1,5 @@
 .App {
+  display: flex;
   text-align: center;
 }
 
@@ -35,4 +36,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.main-content {
+  margin-left: 250px;
+  transition: margin-left 0.3s ease-in-out;
+  flex-grow: 1;
+}
+.main-content.sidebar-closed {
+  margin-left: 0;
+}
+.page-content {
+  margin-top: 80px;
+  padding: 20px;
 }
