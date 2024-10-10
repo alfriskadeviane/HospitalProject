@@ -8,7 +8,7 @@ import login_icon from '../Assets/login.png'
 export const Login = () => {
     const [nip, setNip] = useState('');
     const [password, setPassword] = useState('');
-    const login = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogin = (e) => {

@@ -9,6 +9,8 @@ import { Sidebar } from './Components/Sidebar/Sidebar';
 import { Ruangan } from './Components/Ruangan/Ruangan';
 import { Cuti } from './Components/Cuti/Cuti';
 import { Navbar } from './Components/Navbar/Navbar';
+import { AuthProvider } from './Context/Authcontex';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 function App() {
  
@@ -18,6 +20,7 @@ function App() {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
+    <AuthProvider>
     <Router>
     <div className="app">
     <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
@@ -27,9 +30,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/users" element={<User />} />
-            <Route path="/ruangan" element={<Ruangan />} />
-            <Route path="/cuti" element={<Cuti />} />
+            <Route path="/users" element={<ProtectedRoute><User /></ProtectedRoute>} />
+            <Route path="/ruangan" element={<ProtectedRoute><Ruangan /></ProtectedRoute>} />
+            <Route path="/cuti" element={<ProtectedRoute><Cuti /></ProtectedRoute>} />
             
           </Routes>
         </div>
@@ -37,6 +40,7 @@ function App() {
       </div>
     </div>
   </Router>
+  </AuthProvider>
   );
 }
 

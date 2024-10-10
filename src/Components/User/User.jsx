@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './User.css'
 import { useState } from 'react'
 import Modal from 'react-modal'
 import plus from '../Assets/plus.png'
 import btnclose from '../Assets/close.png'
+import { AuthContext } from '../../Context/Authcontex'
 
 
 export const User = () => {
+    const { isAuthenticated } = useContext(AuthContext);
     const [visible, setvisible]= useState(false)
     return (
         <div className='container-fluid'>

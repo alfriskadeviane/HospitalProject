@@ -6,6 +6,11 @@ export const AuthContext = createContext();
 
 // AuthProvider to handle auth state and persistence
 export const AuthProvider = ({ children }) => {
+  const value = localStorage.getItem('key');
+  let val = false
+  if (value){
+    val= true
+  }
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // Check for token on initial render (session persistence)
