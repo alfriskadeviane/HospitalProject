@@ -68,5 +68,10 @@
 
  .icon{
     width: 50px;
+    
+ }
+
+ #logut{
+  cursor: pointer;
  }
   

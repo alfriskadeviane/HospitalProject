@@ -38,7 +38,7 @@ export const Sidebar = ({ isOpen, toggleSidebar }) => {
             </Link>
           </li>
           <li>
-            <div className="mb-3 row" onClick={logout} >
+            <div className="mb-3 row" onClick={logout} id="logut">
             <img src={icnlogout} alt="" className="icon" />
               Logout
             </div>
