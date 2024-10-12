@@ -1,17 +1,18 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './User.css'
 import { useState } from 'react'
 import Modal from 'react-modal'
 import plus from '../Assets/plus.png'
 import btnclose from '../Assets/close.png'
-import { AuthContext } from '../../Context/Authcontex'
+// import { AuthContext } from '../../Context/Authcontex'
 import {db} from '../../Config/Firebaseconfig'
 import { doc, addDoc, collection, getDocs, updateDoc, deleteDoc } from 'firebase/firestore'
 
 
 export const User = () => {
-    const { isAuthenticated } = useContext(AuthContext);
-    const [visible, setvisible]= useState(false);
+    const [selectedUser, setSelectedUser] = useState(null); // For storing selected user data for update
+    const [isModalOpen, setIsModalOpen] = useState(false); // For opening/closing modal
+    const [isEditing, setIsEditing] = useState(false); // To distinguish between adding and updating
     const [nip, setNIP] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -19,26 +20,24 @@ export const User = () => {
     const [jabatan, setJabatan] = useState('');
     const [ruangan, setRuangan] = useState('');
     const [password, setPassword] = useState('');
+    const [id, setId] = useState('');
     const [fetchData, setFetchData] =useState([]);
 
     // Function to handle modal close
     const closeModal = () => {
-        setvisible(false);
+        setNIP('')
+        setName('')
+        setEmail('')
+        setRole('')
+        setJabatan('')
+        setRuangan('')
+        setPassword('')
+        setIsModalOpen(false);
     };
 
     // creating db ref
     const dbref = collection(db, "HospitalProject")
-    //storing data to db
-    const add = async () =>{
-        const addata =  await addDoc(dbref,{NIP:nip, Name: name, Email: email, Role: role, Jabatan: jabatan, Ruangan: ruangan, Password: password})
-        if (addata) {
-            alert("Data Berhasil Tersimpan")
-        }else{
-            alert("Data Gagal Tersimpan")
-        }
-        closeModal();
-        fetch()
-    }
+
     // fetching data from db
     const fetch= async()=>{
         const snapshot = await getDocs(dbref)
@@ -46,10 +45,44 @@ export const User = () => {
         setFetchData(fetchData)
         console.log(fetchData)
     }
+
     useEffect(()=>{
         fetch()
     },[])
-    // delete data fro db
+
+     // Handle Add User button click
+    const handleAddUser = () => {
+        setSelectedUser(null); // Clear selected user if any
+        setIsEditing(false);
+        setIsModalOpen(true); // Open modal for adding new user
+    };
+
+    // Handle Update click
+    const handleUpdateClick = (user) => {
+        setSelectedUser(user); // Set selected user to be updated
+        setIsEditing(true);
+        setIsModalOpen(true); // Open modal for editing
+        {passData(user.id)}
+    };
+
+    //pass update data to form
+    const passData= async (id) =>{
+        const matchId= fetchData.find((data)=>{
+            return data.id === id
+            
+        })
+        console.log(matchId)
+        setNIP(matchId.NIP)
+        setName(matchId.Name)
+        setEmail(matchId.Email)
+        setRole(matchId.Role)
+        setJabatan(matchId.Jabatan)
+        setRuangan(matchId.Ruangan)
+        setPassword(matchId.Password)
+        setId(matchId.id)
+    }
+
+    // delete data fro db 
     const del = async(id)=>{
         const delref= doc(dbref, id)
         console.log("data: ", delref)
@@ -65,11 +98,42 @@ export const User = () => {
         closeModal();
         fetch()
     }
+
+     // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (isEditing) {
+        // Update user
+            try {
+                const userDocRef = doc(dbref, id);
+                const updateDocRef=await updateDoc(userDocRef, {
+                    NIP:nip, Name: name, Email: email, Role: role, Jabatan: jabatan, Ruangan: ruangan, Password: password
+                })
+                alert("Data Berhasil Terubah")
+            } catch (error) {
+                alert(error,"Data Gagal Terubah")
+            }
+    
+        } else {
+        // Add new user
+            const addata =  await addDoc(dbref,{NIP:nip, Name: name, Email: email, Role: role, Jabatan: jabatan, Ruangan: ruangan, Password: password})
+            console.log("ADD: ", addata)
+                if (addata) {
+                    alert("Data Berhasil Tersimpan")
+                }else{
+                    alert("Data Gagal Tersimpan")
+                }
+        }
+        closeModal(); // Close the modal
+        fetch(); // Refresh users after adding/updating
+        
+    };
     
     return (
         <div className='container-fluid'>
             <h1>DATA KARYAWAN</h1>   
-            <img src={plus} alt="" className='add-btn' onClick={()=>setvisible(true)}/>
+            <img src={plus} alt="" className='add-btn' onClick={handleAddUser}/>
             <div><p>   </p></div>
             <table className="table table-striped-columns md-3">
                 <thead>
@@ -94,7 +158,7 @@ export const User = () => {
                                     <td>{data.Ruangan}</td>
                                     <td>{data.Jabatan}</td>
                                     <td>
-                                        <button className='btn btn-success'>Edit</button>
+                                        <button className='btn btn-success'onClick={()=>handleUpdateClick(data)}>Edit</button>
                                         <button className='btn btn-danger' onClick={()=> del(data.id)}>Delete</button>
                                     </td>
                                 </tr>
@@ -105,7 +169,11 @@ export const User = () => {
                 </tbody>
             </table> 
             <div className="sub-container">
-                <Modal isOpen={visible} onRequestClose={()=>setvisible(false)} style={
+             {isModalOpen &&(
+  
+                <Modal isOpen={isModalOpen} onRequestClose={()=>setIsModalOpen(false)} isEditing={isEditing} user={selectedUser} fetchData={fetchData}
+                // isOpen={visible} onRequestClose={()=>setvisible(false)}
+                 style={
                     {
                         content:{
                             width: "1100px",
@@ -118,11 +186,11 @@ export const User = () => {
                 } >
 
                     <div className='close-btn'>
-                            <img src={btnclose} alt="" srcset="" className='cls-btn' onClick={()=>setvisible(false)}/>
+                            <img src={btnclose} alt="" srcset="" className='cls-btn' onClick={closeModal}/>
                         </div>
-                    <div className="new-user">NEW USER</div>
-                    
-                    <form action="">
+                    {/* <div className="new-user">USER</div> */}
+                    <div className="new-user">{isEditing ? 'Update User' : 'Add User'}</div>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
                             <label for="inputNIP" class="col-sm-2 col-form-label">NIP</label>
                             <div className="col-sm-10">
@@ -166,17 +234,12 @@ export const User = () => {
                             </div>
                         </div>
                         <div className="submit">
-                            <button type="button" className="btn btn-success" id="submit" onClick={add}>Submit</button>
+                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Update' : 'Add'} User</button>
                         </div>
                         
-                        
-                        
                     </form>
-                       
-                     
-                    
-
                 </Modal>
+             )} 
             </div>
             
         </div>
