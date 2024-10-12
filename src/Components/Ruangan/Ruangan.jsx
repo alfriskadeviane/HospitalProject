@@ -176,7 +176,7 @@ export const Ruangan = () => {
                             <img src={btnclose} alt="" srcset="" className='cls-btn' onClick={closeModal}/>
                         </div>
                     {/* <div className="new-user">USER</div> */}
-                    <div className="new-user">{isEditing ? 'Update User' : 'Add User'}</div>
+                    <div className="new-user">{isEditing ? 'Update Ruangan' : 'Add Ruangan'}</div>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
                             <label for="inputNIP" class="col-sm-2 col-form-label">Kode Ruangan</label>
@@ -200,7 +200,7 @@ export const Ruangan = () => {
                         
                         
                         <div className="submit">
-                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Update' : 'Add'} User</button>
+                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Update' : 'Add'} Ruangan</button>
                         </div>
                         
                     </form>
