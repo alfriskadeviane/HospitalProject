@@ -9,7 +9,9 @@ export const Login = () => {
     const [nip, setNip] = useState('');
     const [password, setPassword] = useState('');
     const {login} = useContext(AuthContext);
+    const [error, setError]= useState('');
     const navigate = useNavigate();
+    
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -17,11 +19,12 @@ export const Login = () => {
         navigate('/users');
       };
 
+
   return (
     <div className='body'>
         <div className='container'>
             <div className='header'>
-                <img className='login_icon' src={login_icon} alt="login_icon" srcset="" />
+                <img className='login_icon' src={login_icon} alt="login_icon"  />
                 <div className='sign-in-text'> SIGN IN HERE</div>
                 <div className='underline'></div>
             </div>

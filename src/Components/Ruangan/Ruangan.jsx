@@ -27,7 +27,7 @@ export const Ruangan = () => {
     };
 
     // creating db ref
-    const dbref = collection(db, "HospitalRoom")
+    const dbref = collection(db, "room")
 
     // fetching data from db
     const fetch= async()=>{
@@ -173,7 +173,7 @@ export const Ruangan = () => {
                 } >
 
                     <div className='close-btn'>
-                            <img src={btnclose} alt="" srcset="" className='cls-btn' onClick={closeModal}/>
+                            <img src={btnclose} alt=""  className='cls-btn' onClick={closeModal}/>
                         </div>
                     {/* <div className="new-user">USER</div> */}
                     <div className="new-user">{isEditing ? 'Update Ruangan' : 'Add Ruangan'}</div>

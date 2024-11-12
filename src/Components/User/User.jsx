@@ -17,11 +17,12 @@ export const User = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [role, setRole] = useState('');
-    const [jabatan, setJabatan] = useState('');
     const [ruangan, setRuangan] = useState('');
     const [password, setPassword] = useState('');
     const [id, setId] = useState('');
     const [fetchData, setFetchData] =useState([]);
+    const [fetchCuti, setFetchCuti]= useState([]);
+    const [dataCuti, setDataCuti]= useState({});
 
     // Function to handle modal close
     const closeModal = () => {
@@ -29,14 +30,14 @@ export const User = () => {
         setName('')
         setEmail('')
         setRole('')
-        setJabatan('')
         setRuangan('')
         setPassword('')
         setIsModalOpen(false);
     };
 
     // creating db ref
-    const dbref = collection(db, "HospitalProject")
+    const dbref = collection(db, "employess")
+    const dbcuti =collection(db, "leaves")
 
     // fetching data from db
     const fetch= async()=>{
@@ -76,8 +77,8 @@ export const User = () => {
         setName(matchId.Name)
         setEmail(matchId.Email)
         setRole(matchId.Role)
-        setJabatan(matchId.Jabatan)
-        setRuangan(matchId.Ruangan)
+        // setJabatan(matchId.Jabatan)
+        setRuangan(matchId.Room)
         setPassword(matchId.Password)
         setId(matchId.id)
     }
@@ -99,6 +100,16 @@ export const User = () => {
         fetch()
     }
 
+    // get data cuti
+    const fetchdataCuti = async () => {
+            const snapshot = await getDocs(dbcuti)
+            const fetchDataCuti=  snapshot.docs.map((doc =>({id: doc.id, ...doc.data()})))
+            setFetchCuti(fetchDataCuti)
+            console.log(fetchDataCuti)
+        }
+    
+
+
      // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -108,7 +119,7 @@ export const User = () => {
             try {
                 const userDocRef = doc(dbref, id);
                 const updateDocRef=await updateDoc(userDocRef, {
-                    NIP:nip, Name: name, Email: email, Role: role, Jabatan: jabatan, Ruangan: ruangan, Password: password
+                    NIP:nip, Name: name, Email: email, Role: role,  Room: ruangan, Password: password
                 })
                 alert("Data Berhasil Terubah")
             } catch (error) {
@@ -117,7 +128,23 @@ export const User = () => {
     
         } else {
         // Add new user
-            const addata =  await addDoc(dbref,{NIP:nip, Name: name, Email: email, Role: role, Jabatan: jabatan, Ruangan: ruangan, Password: password})
+            // get cuti from dbcuti
+            fetchdataCuti()
+            const newData = fetchCuti.reduce((acc, item) => {
+                acc[item.LeaveName] = item.LeaveAmt;
+                return acc;
+            }, {});
+        
+            const addata =  await addDoc(dbref,{
+                NIP:nip, 
+                Name: name, 
+                Email: email, 
+                Role: role,  
+                Room: ruangan, 
+                Password: password,
+                Leaves: newData
+                
+            })
             console.log("ADD: ", addata)
                 if (addata) {
                     alert("Data Berhasil Tersimpan")
@@ -141,8 +168,7 @@ export const User = () => {
                     <th scope="col">NIP</th>
                     <th scope="col">Name</th>
                     <th scope="col">Role</th>
-                    <th scope="col">Ruangan</th>
-                    <th scope="col">Jabatan</th>
+                    <th scope="col">Room</th>
                     <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -155,8 +181,7 @@ export const User = () => {
                                     <th scope="row">{data.NIP}</th>
                                     <td>{data.Name}</td>
                                     <td>{data.Role}</td>
-                                    <td>{data.Ruangan}</td>
-                                    <td>{data.Jabatan}</td>
+                                    <td>{data.Room}</td>
                                     <td>
                                         <button className='btn btn-success'onClick={()=>handleUpdateClick(data)}>Edit</button>
                                         <button className='btn btn-danger' onClick={()=> del(data.id)}>Delete</button>
@@ -186,7 +211,7 @@ export const User = () => {
                 } >
 
                     <div className='close-btn'>
-                            <img src={btnclose} alt="" srcset="" className='cls-btn' onClick={closeModal}/>
+                            <img src={btnclose} alt="" className='cls-btn' onClick={closeModal}/>
                         </div>
                     {/* <div className="new-user">USER</div> */}
                     <div className="new-user">{isEditing ? 'Update User' : 'Add User'}</div>
@@ -215,12 +240,12 @@ export const User = () => {
                             <input type="text" class="form-control" id="inputRole" value={role} onChange={(e) => setRole(e.target.value)}/>
                             </div>
                         </div>
-                        <div className="mb-3 row">
+                        {/* <div className="mb-3 row">
                             <label for="inputJabatan" class="col-sm-2 col-form-label">Jabatan</label>
                             <div className="col-sm-10">
                             <input type="text" class="form-control" id="inputJabatan" value={jabatan} onChange={(e) => setJabatan(e.target.value)}/>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="mb-3 row">
                             <label for="inputRuangan" class="col-sm-2 col-form-label">Ruangan</label>
                             <div className="col-sm-10">

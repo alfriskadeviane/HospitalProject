@@ -26,7 +26,7 @@ export const Cuti = () => {
     };
 
     // creating db ref
-    const dbref = collection(db, "HospitalLeaves")
+    const dbref = collection(db, "leaves")
 
     // fetching data from db
     const fetch= async()=>{
@@ -164,7 +164,7 @@ export const Cuti = () => {
                     }
                 } >
                     <div className="close-con">
-                    <img src={btnclose} alt="" srcset="" className='cls-btn' onClick={closeModal}/>
+                    <img src={btnclose} alt=""  className='cls-btn' onClick={closeModal}/>
                     </div>
                     <div className="new-user">{isEditing ? 'Update Cuti' : 'Add Cuti'}</div>
                     <form onSubmit={handleSubmit}>
