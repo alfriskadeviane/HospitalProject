@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import React, { useContext, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Redirect } from 'react-router-dom';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Login } from './Components/Login/Login';
@@ -15,6 +15,8 @@ import ProtectedRoute from './Components/ProtectedRoute';
 function App() {
  
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const isLoggedIn = localStorage.getItem('authToken');
+  console.log("login",isLoggedIn)
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -28,8 +30,8 @@ function App() {
         <Navbar toggleSidebar={toggleSidebar}/>
         <div className="page-content">
           <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/" element={isLoggedIn ? <Redirect to="/dashboard" /> : <Login />}/> */}
+            <Route path= "/login" element={isLoggedIn ? <User /> : <Login />} />
             <Route path="/users" element={<ProtectedRoute><User /></ProtectedRoute>} />
             <Route path="/ruangan" element={<ProtectedRoute><Ruangan /></ProtectedRoute>} />
             <Route path="/cuti" element={<ProtectedRoute><Cuti /></ProtectedRoute>} />

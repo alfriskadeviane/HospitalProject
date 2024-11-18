@@ -13,9 +13,9 @@ export const Login = () => {
     const navigate = useNavigate();
     
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        login(nip, password);
+        await login(nip, password);
         navigate('/users');
       };
 

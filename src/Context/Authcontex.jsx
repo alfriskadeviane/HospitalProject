@@ -10,7 +10,8 @@ export const AuthContext = createContext();
 
 // AuthProvider to handle auth state and persistence
 export const AuthProvider = ({ children }) => {
-  const value = localStorage.getItem('key');
+  const value = localStorage.getItem('authToken');
+  console.log("auth", value)
   let val = false
   if (value){
     val= true
@@ -30,12 +31,12 @@ export const AuthProvider = ({ children }) => {
   const login = async (nip, password) => {
     try {
       console.log(nip, password)
-      if (nip === 'user' && password === 'user') {
+      if (nip === 'admin' && password === 'admin') {
         localStorage.setItem('authToken', 'session-token');
         setIsAuthenticated(true);
         console.log(isAuthenticated, " auth hardcode")
       }
-      if (nip!== 'user') {
+      if (nip!== 'admin') {
         const q = query(collection(db, 'employess'), where('NIP', '==', nip));
         const userData = await getDocs(q);
         console.log("data",userData)
@@ -58,8 +59,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Logout functionality
-  const logout = () => {
-    localStorage.removeItem('authToken');
+  const logout = async() => {
+    await localStorage.removeItem('authToken');
     setIsAuthenticated(false);
   };
 
