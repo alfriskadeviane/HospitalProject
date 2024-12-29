@@ -22,7 +22,7 @@ export const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li>
             <Link to='/users' className="mb-3 row">
               <img src={icnuser} alt="" className="icon" />
-              Data User
+              Data Karyawan
             </Link>
           </li>
           <li>

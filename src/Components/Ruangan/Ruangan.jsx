@@ -129,10 +129,9 @@ export const Ruangan = () => {
             <table className="table table-striped-columns md-3">
                 <thead>
                     <tr>
-                    <th scope="col">Kode Ruangan</th>
-                    <th scope="col">Name Ruangan</th>
+                    <th scope="col">Nama Ruangan</th>
                     <th scope="col">Kepala Ruangan</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -141,12 +140,11 @@ export const Ruangan = () => {
                             return(
                                 <>
                                 <tr>
-                                    <th scope="row">{data.RoomID}</th>
                                     <td>{data.RoomName}</td>
                                     <td>{data.RoomLead}</td>
                                     <td>
-                                        <button className='btn btn-success'onClick={()=>handleUpdateClick(data)}>Edit</button>
-                                        <button className='btn btn-danger' onClick={()=> del(data.id)}>Delete</button>
+                                        <button className='btn btn-success'onClick={()=>handleUpdateClick(data)}>Ubah</button>
+                                        <button className='btn btn-danger' onClick={()=> del(data.id)}>Hapus</button>
                                     </td>
                                 </tr>
                                 </>

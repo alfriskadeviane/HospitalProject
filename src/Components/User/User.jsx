@@ -166,10 +166,10 @@ export const User = () => {
                 <thead>
                     <tr>
                     <th scope="col">NIP</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Room</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Jabatan</th>
+                    <th scope="col">Ruangan</th>
+                    <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -183,8 +183,8 @@ export const User = () => {
                                     <td>{data.Role}</td>
                                     <td>{data.Room}</td>
                                     <td>
-                                        <button className='btn btn-success'onClick={()=>handleUpdateClick(data)}>Edit</button>
-                                        <button className='btn btn-danger' onClick={()=> del(data.id)}>Delete</button>
+                                        <button className='btn btn-success'onClick={()=>handleUpdateClick(data)}>Ubah</button>
+                                        <button className='btn btn-danger' onClick={()=> del(data.id)}>Hapus</button>
                                     </td>
                                 </tr>
                                 </>
@@ -214,7 +214,7 @@ export const User = () => {
                             <img src={btnclose} alt="" className='cls-btn' onClick={closeModal}/>
                         </div>
                     {/* <div className="new-user">USER</div> */}
-                    <div className="new-user">{isEditing ? 'Update User' : 'Add User'}</div>
+                    <div className="new-user">{isEditing ? 'Update User' : 'Tambah Karyawan'}</div>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
                             <label for="inputNIP" class="col-sm-2 col-form-label">NIP</label>
@@ -235,7 +235,7 @@ export const User = () => {
                             </div>
                         </div>
                         <div className="mb-3 row">
-                            <label for="inputRole" class="col-sm-2 col-form-label">Role</label>
+                            <label for="inputRole" class="col-sm-2 col-form-label">Jabatan</label>
                             <div className="col-sm-10">
                             <input type="text" class="form-control" id="inputRole" value={role} onChange={(e) => setRole(e.target.value)}/>
                             </div>
@@ -259,7 +259,7 @@ export const User = () => {
                             </div>
                         </div>
                         <div className="submit">
-                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Update' : 'Add'} User</button>
+                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Update' : 'Add'} Karyawan</button>
                         </div>
                         
                     </form>

@@ -25,7 +25,7 @@ export const Login = () => {
         <div className='container'>
             <div className='header'>
                 <img className='login_icon' src={login_icon} alt="login_icon"  />
-                <div className='sign-in-text'> SIGN IN HERE</div>
+                <div className='sign-in-text'> Silahkan Masuk</div>
                 <div className='underline'></div>
             </div>
             <form onSubmit={handleLogin}>
