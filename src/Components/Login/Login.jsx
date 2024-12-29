@@ -4,6 +4,7 @@ import './Login.css'
 import { AuthContext } from '../../Context/Authcontex'
 
 import login_icon from '../Assets/login.png'
+import logo from '../Assets/logo.png'
 
 export const Login = () => {
     const [nip, setNip] = useState('');
@@ -24,7 +25,7 @@ export const Login = () => {
     <div className='body'>
         <div className='container'>
             <div className='header'>
-                <img className='login_icon' src={login_icon} alt="login_icon"  />
+                <img className='login_icon' src={logo} alt="login_icon"  />
                 <div className='sign-in-text'> Silahkan Masuk</div>
                 <div className='underline'></div>
             </div>

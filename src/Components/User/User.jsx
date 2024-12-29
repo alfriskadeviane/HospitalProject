@@ -165,11 +165,11 @@ export const User = () => {
             <table className="table table-striped-columns md-3">
                 <thead>
                     <tr>
-                    <th scope="col">NIP</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Jabatan</th>
-                    <th scope="col">Ruangan</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col" className='text-center'>NIP</th>
+                    <th scope="col" className='text-center'>Nama</th>
+                    <th scope="col" className='text-center'>Jabatan</th>
+                    <th scope="col" className='text-center'>Ruangan</th>
+                    <th scope="col" className='text-center'>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -178,7 +178,7 @@ export const User = () => {
                             return(
                                 <>
                                 <tr>
-                                    <th scope="row">{data.NIP}</th>
+                                    <th scope="row" >{data.NIP}</th>
                                     <td>{data.Name}</td>
                                     <td>{data.Role}</td>
                                     <td>{data.Room}</td>
@@ -214,7 +214,7 @@ export const User = () => {
                             <img src={btnclose} alt="" className='cls-btn' onClick={closeModal}/>
                         </div>
                     {/* <div className="new-user">USER</div> */}
-                    <div className="new-user">{isEditing ? 'Update User' : 'Tambah Karyawan'}</div>
+                    <div className="new-user">{isEditing ? 'Ubah Karyawan' : 'Tambah Karyawan'}</div>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
                             <label for="inputNIP" class="col-sm-2 col-form-label">NIP</label>
@@ -259,7 +259,7 @@ export const User = () => {
                             </div>
                         </div>
                         <div className="submit">
-                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Update' : 'Add'} Karyawan</button>
+                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Ubah' : 'Tambah'} Karyawan</button>
                         </div>
                         
                     </form>

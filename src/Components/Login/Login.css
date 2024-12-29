@@ -19,7 +19,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100px;
+    width: 180px;
     text-align: center;
 
 }
@@ -28,7 +28,7 @@
     padding: 10px 0 15px;
     font-size: 18px;
     font-weight: bold;
-    color: #1a38e1;
+    color: #013016;
     text-align: center
 }
 
@@ -54,7 +54,7 @@
 }
 .inputs input[type="text"]:hover, 
 .inputs input[type="password"]:hover{
-    color: #0b0b0b;
+    color: #a1a1a1;
     border: 1px solid #050505;
     box-shadow: 0 0 5px rgba(25, 52, 229, 0.3), 0 0 10px rgba(0,255,0,.2), 0 0 15px rgba(0,255,0,.1), 0 2px 0 black
 }

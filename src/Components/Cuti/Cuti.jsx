@@ -124,9 +124,9 @@ export const Cuti = () => {
             <table className="table table-striped-columns md-3">
                 <thead>
                     <tr>
-                    <th scope="col">Name Cuti</th>
-                    <th scope="col">Jumlah Cuti</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col" className='text-center'>Nama Cuti</th>
+                    <th scope="col" className='text-center'>Jumlah Cuti</th>
+                    <th scope="col" className='text-center'>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -164,7 +164,7 @@ export const Cuti = () => {
                     <div className="close-con">
                     <img src={btnclose} alt=""  className='cls-btn' onClick={closeModal}/>
                     </div>
-                    <div className="new-user">{isEditing ? 'Update Cuti' : 'Add Cuti'}</div>
+                    <div className="new-user">{isEditing ? 'Ubah Cuti' : 'Tambah Cuti'}</div>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
                             <label for="inputNIP" class="col-sm-2 col-form-label">Kode Cuti</label>
@@ -188,7 +188,7 @@ export const Cuti = () => {
                         
                         
                         <div className="submit">
-                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Update' : 'Add'} Cuti</button>
+                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Ubah' : 'Tambah'} Cuti</button>
                         </div>
                         
                     </form>

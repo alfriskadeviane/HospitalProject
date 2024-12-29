@@ -129,9 +129,9 @@ export const Ruangan = () => {
             <table className="table table-striped-columns md-3">
                 <thead>
                     <tr>
-                    <th scope="col">Nama Ruangan</th>
-                    <th scope="col">Kepala Ruangan</th>
-                    <th scope="col">Aksi</th>
+                    <th scope="col" className='text-center'>Nama Ruangan</th>
+                    <th scope="col" className='text-center'>Kepala Ruangan</th>
+                    <th scope="col" className='text-center'>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,7 +153,7 @@ export const Ruangan = () => {
                     }
                 </tbody>
             </table> 
-            <div className="sub-container">
+            {/* <div className="sub-container"> */}
             {isModalOpen &&(
   
                 <Modal isOpen={isModalOpen} onRequestClose={()=>setIsModalOpen(false)} isEditing={isEditing} user={selectedUser} fetchData={fetchData}
@@ -161,51 +161,54 @@ export const Ruangan = () => {
                 style={
                     {
                         content:{
-                            width: "1100px",
+                            width: "900px",
                             height: "600px",
                             margin: "auto",
 
                         }
                     
                     }
-                } >
-
-                    <div className='close-btn'>
-                            <img src={btnclose} alt=""  className='cls-btn' onClick={closeModal}/>
-                        </div>
-                    {/* <div className="new-user">USER</div> */}
-                    <div className="new-user">{isEditing ? 'Update Ruangan' : 'Add Ruangan'}</div>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3 row">
-                            <label for="inputNIP" class="col-sm-2 col-form-label">Kode Ruangan</label>
-                            <div className="col-sm-10">
-                            <input type="text" class="form-control" id="inputNIP" value={roomID} onChange={(e)=> setRoomId(e.target.value)}/>
+                } 
+                    
+                >
+                    <div className='container-fluid'>
+                        <div className='close-btn'>
+                                <img src={btnclose} alt=""  className='cls-btn' onClick={closeModal}/>
                             </div>
-                        </div>
-                        <div className="mb-3 row">
-                            <label for="inputName" class="col-sm-2 col-form-label">Nama Ruangan</label>
-                            <div className="col-sm-10">
-                            <input type="text" class="form-control" id="inputName" value={roomName} onChange={(e) => setRoomName(e.target.value)}/>
+                        {/* <div className="new-user">USER</div> */}
+                        <div className="new-user">{isEditing ? 'Ubah Ruangan' : 'Tambah Ruangan'}</div>
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-3 row">
+                                <label for="inputNIP" class="col-sm-2 col-form-label">Kode Ruangan</label>
+                                <div className="col-sm-10">
+                                <input type="text" class="form-control" id="inputNIP" value={roomID} onChange={(e)=> setRoomId(e.target.value)}/>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div className="mb-3 row">
-                            <label for="inputRole" class="col-sm-2 col-form-label">Kepala Ruangan</label>
-                            <div className="col-sm-10">
-                            <input type="text" class="form-control" id="inputRole" value={roomLead} onChange={(e) => setRoomLead(e.target.value)}/>
+                            <div className="mb-3 row">
+                                <label for="inputName" class="col-sm-2 col-form-label">Nama Ruangan</label>
+                                <div className="col-sm-10">
+                                <input type="text" class="form-control" id="inputName" value={roomName} onChange={(e) => setRoomName(e.target.value)}/>
+                                </div>
                             </div>
-                        </div>
-                        
-                        
-                        <div className="submit">
-                            <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Update' : 'Add'} Ruangan</button>
-                        </div>
-                        
-                    </form>
+                            
+                            <div className="mb-3 row">
+                                <label for="inputRole" class="col-sm-2 col-form-label">Kepala Ruangan</label>
+                                <div className="col-sm-10">
+                                <input type="text" class="form-control" id="inputRole" value={roomLead} onChange={(e) => setRoomLead(e.target.value)}/>
+                                </div>
+                            </div>
+                            
+                            
+                            <div className="submit">
+                                <button type="submit" className="btn btn-success" id="submit">{isEditing ? 'Ubah' : 'Tambah'} Ruangan</button>
+                            </div>
+                            
+                        </form>
+                    </div>
                 </Modal>
                 )} 
             </div>
             
-        </div>
+        // </div>
     )
 }

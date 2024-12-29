@@ -5,6 +5,7 @@ import Modal from 'react-modal'
 import plus from '../Assets/plus.png'
 import "./Navbar.css";
 import menu_icon from '../Assets/menu.png'
+import logo from '../Assets/logo.png'
 
 export const Navbar = ({ toggleSidebar, isSidebarOpen }) => {
     const [visible, setvisible]= useState(false)
@@ -16,6 +17,7 @@ export const Navbar = ({ toggleSidebar, isSidebarOpen }) => {
         <nav className={`navbar ${isSidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
             <img src={menu_icon} className="menu-btn" onClick={toggleSidebar}/>
             {/* <h4>Hospital</h4> */}
+            <img src={logo} className="logo"/>
         </nav>
         
         // <div className='container'>

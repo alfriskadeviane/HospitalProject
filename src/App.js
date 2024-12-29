@@ -30,7 +30,7 @@ function App() {
         <Navbar toggleSidebar={toggleSidebar}/>
         <div className="page-content">
           <Routes>
-            {/* <Route path="/" element={isLoggedIn ? <Redirect to="/dashboard" /> : <Login />}/> */}
+            <Route path="/" element={isLoggedIn ? <User /> : <Login />}/>
             <Route path= "/login" element={isLoggedIn ? <User /> : <Login />} />
             <Route path="/users" element={<ProtectedRoute><User /></ProtectedRoute>} />
             <Route path="/ruangan" element={<ProtectedRoute><Ruangan /></ProtectedRoute>} />
