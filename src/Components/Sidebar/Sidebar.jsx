@@ -20,7 +20,7 @@ export const Sidebar = ({ isOpen, toggleSidebar }) => {
           <>
 
           <li>
-            <Link to='/users' className="mb-3 row">
+            <Link to='/pengguna' className="mb-3 row">
               <img src={icnuser} alt="" className="icon" />
               Data Karyawan
             </Link>
@@ -40,7 +40,7 @@ export const Sidebar = ({ isOpen, toggleSidebar }) => {
           <li>
             <div className="mb-3 row" onClick={logout} id="logut">
             <img src={icnlogout} alt="" className="icon" />
-              Logout
+              Keluar
             </div>
           </li>
           </>

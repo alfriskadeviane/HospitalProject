@@ -32,7 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={isLoggedIn ? <User /> : <Login />}/>
             <Route path= "/login" element={isLoggedIn ? <User /> : <Login />} />
-            <Route path="/users" element={<ProtectedRoute><User /></ProtectedRoute>} />
+            <Route path="/pengguna" element={<ProtectedRoute><User /></ProtectedRoute>} />
             <Route path="/ruangan" element={<ProtectedRoute><Ruangan /></ProtectedRoute>} />
             <Route path="/cuti" element={<ProtectedRoute><Cuti /></ProtectedRoute>} />
             

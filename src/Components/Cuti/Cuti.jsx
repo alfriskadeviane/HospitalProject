@@ -153,9 +153,9 @@ export const Cuti = () => {
                 <Modal isOpen={isModalOpen} onRequestClose={()=>setIsModalOpen(false)} isEditing={isEditing} user={selectedUser} fetchData={fetchData} style={
                     {
                         content:{
-                            width: "1100px",
+                            width: "900px",
                             height: "600px",
-                            margin: "auto"
+                            margin: "auto",
 
                         }
                     

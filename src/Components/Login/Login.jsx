@@ -17,7 +17,7 @@ export const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         await login(nip, password);
-        navigate('/users');
+        navigate('/pengguna');
       };
 
 
@@ -39,7 +39,7 @@ export const Login = () => {
                     </div>
                 </div>
                 <div className="submit-container">
-                    <input type="submit" value="LOGIN" />
+                    <input type="submit" value="MASUK" />
                 </div>
             </form>
             
