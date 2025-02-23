@@ -8,6 +8,8 @@ import icncalendar from '../Assets/calendar.png'
 import icnlogout from '../Assets/logout.png'
 import { AuthContext } from "../../Context/Authcontex";
 import { Link } from "react-router-dom";
+import icnleave from '../Assets/leave.png'
+import icnjobsch from '../Assets/job-schedule.png'
 
 
 export const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -35,6 +37,18 @@ export const Sidebar = ({ isOpen, toggleSidebar }) => {
             <Link to='/cuti' className="mb-3 row">
               <img src={icncalendar} alt="" className="icon" />
               Data Cuti
+            </Link>
+          </li>
+          <li>
+            <Link to='/cuti-karyawan' className="mb-3 row">
+              <img src={icnleave} alt="" className="icon" />
+              Data Cuti Karyawan
+            </Link>
+          </li>
+          <li>
+            <Link to='/ubah-jadwal' className="mb-3 row">
+              <img src={icnjobsch} alt="" className="icon" />
+              Data Ubah Jadwal
             </Link>
           </li>
           <li>

@@ -11,6 +11,8 @@ import { Cuti } from './Components/Cuti/Cuti';
 import { Navbar } from './Components/Navbar/Navbar';
 import { AuthProvider } from './Context/Authcontex';
 import ProtectedRoute from './Components/ProtectedRoute';
+import { KaryawanCuti } from './Components/KaryawanCuti/KaryawanCuti';
+import { UbahJadwal } from './Components/UbahJadwal/UbahJadwal';
 
 function App() {
  
@@ -35,7 +37,8 @@ function App() {
             <Route path="/pengguna" element={<ProtectedRoute><User /></ProtectedRoute>} />
             <Route path="/ruangan" element={<ProtectedRoute><Ruangan /></ProtectedRoute>} />
             <Route path="/cuti" element={<ProtectedRoute><Cuti /></ProtectedRoute>} />
-            
+            <Route path="/cuti-karyawan" element={<ProtectedRoute><KaryawanCuti /></ProtectedRoute>} />
+            <Route path="/ubah-jadwal" element={<ProtectedRoute><UbahJadwal /></ProtectedRoute>} />
           </Routes>
         </div>
 
